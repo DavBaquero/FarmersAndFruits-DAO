@@ -45,4 +45,9 @@ public class ServiceFruit {
             fruitRepo.delete(frutaEliminada.get());
         }
     }
+
+    public Optional<Fruit> getFruit(String fruta){
+        Optional<Fruit> frutas = fruitRepo.find("name = ?1", fruta).firstResultOptional();
+        return frutas.isPresent() ? Optional.of(frutas.get()) : Optional.empty();
+    }
 }
