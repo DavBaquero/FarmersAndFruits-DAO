@@ -19,6 +19,9 @@ public class RepoTest {
     FarmerRepo farmerRepo;
 
     @Inject
+    FruitRepo fruitRepo;
+
+    @Inject
     ServiceFruit service;
 
     @Test
@@ -32,20 +35,20 @@ public class RepoTest {
 
     @Test
     public void test_mapping_Fruit() {
-        Fruit fruta = Fruit.findById(1000);
+        Fruit fruta = fruitRepo.findById(1000L);
         Assertions.assertThat(fruta).isNotNull();
-        Assertions.assertThat(fruta.toString()).containsIgnoringCase("Apple"); // item_name
-        Assertions.assertThat(fruta.toString()).contains("Winter fruit"); // item_quality
-        Assertions.assertThat(fruta.getId()).isEqualTo(1000);
+        Assertions.assertThat(fruta.toString()).containsIgnoringCase("Apple");
+        Assertions.assertThat(fruta.toString()).contains("Winter fruit");
+        Assertions.assertThat(fruta.getId()).isEqualTo(1000L);
     }
-/* 
+
     // @Test de jupiter, no el de junit
     @Test
     public void testList() {
         Assertions.assertThat(service.list()).hasSize(2);
     }
 
-
+/* 
     @Test
     public void containsTest() {
         Assertions.assertThat(service.list().stream().anyMatch(f -> f.getName().equals("Apple"))).isTrue();
