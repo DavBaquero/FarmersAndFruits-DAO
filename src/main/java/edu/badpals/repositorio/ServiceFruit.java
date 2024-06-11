@@ -38,4 +38,11 @@ public class ServiceFruit {
         fruta = new Fruit(fruit.getName(),fruit.getDescription(),farmero);
         fruitRepo.persist(fruta);
     }
+
+    public void remove(String nombre){
+        Optional<Fruit> frutaEliminada = Optional.of(fruitRepo.find("name = ?1", nombre).firstResult());
+        if (frutaEliminada.isPresent()){
+            fruitRepo.delete(frutaEliminada.get());
+        }
+    }
 }
