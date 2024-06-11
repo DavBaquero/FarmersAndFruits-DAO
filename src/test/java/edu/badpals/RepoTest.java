@@ -27,9 +27,9 @@ public class RepoTest {
         Assertions.assertThat(farmero).isNotNull();
         Assertions.assertThat(farmero.toString()).containsIgnoringCase("Farmer Rick");
         Assertions.assertThat(farmero.toString()).contains("Sa Pobla");
-        Assertions.assertThat(farmero.getId()).isEqualTo(1000L);
+        Assertions.assertThat(farmero.getId()).isEqualTo(1000);
     }
-/* 
+
     @Test
     public void test_mapping_Fruit() {
         Fruit fruta = Fruit.findById(1000);
@@ -38,7 +38,7 @@ public class RepoTest {
         Assertions.assertThat(fruta.toString()).contains("Winter fruit"); // item_quality
         Assertions.assertThat(fruta.getId()).isEqualTo(1000);
     }
-
+/* 
     // @Test de jupiter, no el de junit
     @Test
     public void testList() {
