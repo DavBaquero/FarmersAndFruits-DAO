@@ -4,6 +4,9 @@ package edu.badpals;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -91,26 +94,26 @@ public class RepoTest {
         Assertions.assertThat(farmerRepo.count()).isEqualTo(2L);
     }
 
-/* 
+
 
     @Test
     public void removeTest(){
         service.remove("Apple");
         Assertions.assertThat(service.list()).hasSize(1);
         Assertions.assertThat(service.list().stream().anyMatch(f -> f.getName().equals("Apple"))).isFalse();
-        Assertions.assertThat(Fruit.count()).isEqualTo(1L);
-        Assertions.assertThat(Farmer.count()).isEqualTo(2L);
+        Assertions.assertThat(fruitRepo.count()).isEqualTo(1L);
+        Assertions.assertThat(farmerRepo.count()).isEqualTo(2L);
 
-        Optional<Farmer> supplier = Farmer.find("name", "Farmer Rick").firstResultOptional();
+        Optional<Farmer> supplier = farmerRepo.find("name", "Farmer Rick").firstResultOptional();
         Assertions.assertThat(supplier).isNotEmpty();
 
         // handmade rollback gracias al antipatron ActiveRecord ;)
         Fruit fruit = new Fruit("Apple", "Winter fruit", supplier.get());
-        fruit.persist();
-        Assertions.assertThat(Fruit.count()).isEqualTo(2);
+        fruitRepo.persist(fruit);
+        Assertions.assertThat(fruitRepo.count()).isEqualTo(2);
     }
 
-
+/* 
     @Test
     public void getFruitTest() {
         Assertions.assertThat(service.getFruit("Apple")).get().hasFieldOrPropertyWithValue("name", "Apple").hasFieldOrPropertyWithValue("description", "Winter fruit").extracting("farmer").toString().compareTo("Farmer Rick, Sa Pobla");
