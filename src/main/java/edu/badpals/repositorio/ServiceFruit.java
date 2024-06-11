@@ -24,7 +24,7 @@ public class ServiceFruit {
     }
 
     public void add(Fruit fruit){
-        Optional<Farmer> posifarmero = Optional.of(farmerRepo.find("name = ?1", fruit.getFarmer().getName()).firstResult());
+        Optional<Farmer> posifarmero = Optional.ofNullable(farmerRepo.find("name = ?1", fruit.getFarmer().getName()).firstResult());
         Fruit fruta = null;
         Farmer farmero = null;
         if(posifarmero.isPresent()){
