@@ -71,7 +71,6 @@ public class RepoTest {
         Assertions.assertThat(farmerRepo.count()).isEqualTo(2L);
     }
 
-/* 
     // CORREGIR ESTE TEST PORQUE ES NUEVO
     @Test
     public void addFarmerTest() {
@@ -81,17 +80,18 @@ public class RepoTest {
         Assertions.assertThat(service.list()).hasSize(3);
         Assertions.assertThat(service.list().stream().anyMatch(f -> f.getName().equals("Navel Late"))).isTrue();
         // hay un nuevo registro en la tabla Farmer
-        Assertions.assertThat(Farmer.count()).isEqualTo(3L);
+        Assertions.assertThat(farmerRepo.count()).isEqualTo(3L);
 
         // handmade rollback gracias al antipatron ActiveRecord ;)
-        Fruit fruit = Fruit.find("name", "Navel Late").firstResult();
-        fruit.delete();
-        Assertions.assertThat(Fruit.count()).isEqualTo(2L);
-        Farmer farmer = Farmer.find("name", "Jerrys Bites").firstResult();
-        farmer.delete();
-        Assertions.assertThat(Farmer.count()).isEqualTo(2L);
+        Fruit fruit = fruitRepo.find("name", "Navel Late").firstResult();
+        fruitRepo.delete(fruit);
+        Assertions.assertThat(fruitRepo.count()).isEqualTo(2L);
+        Farmer farmer = farmerRepo.find("name", "Jerrys Bites").firstResult();
+        farmerRepo.delete(farmer);
+        Assertions.assertThat(farmerRepo.count()).isEqualTo(2L);
     }
 
+/* 
 
     @Test
     public void removeTest(){
