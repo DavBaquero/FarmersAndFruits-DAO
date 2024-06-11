@@ -1,5 +1,3 @@
-
-
 package edu.badpals;
 
 
@@ -9,22 +7,27 @@ import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
+import edu.badpals.dominio.*;
+import edu.badpals.repositorio.*;
+
 
 @QuarkusTest
 @Transactional
 public class RepoTest {
 
-    //@Inject
-    //ServiceFruit service;
+    @Inject
+    FarmerRepo farmerRepo;
+
+    @Inject
+    ServiceFruit service;
 
     @Test
-    public void test_mapping_Fruit() {
-        Farmer farmero = farmer.findById(1000);
+    public void test_mapping_Farmer() {
+        Farmer farmero = farmerRepo.findById(1000L);
         Assertions.assertThat(farmero).isNotNull();
-        Assertions.assertThat(farmero.toString()).containsIgnoringCase("Apple"); // item_name
-        Assertions.assertThat(farmero.toString()).contains("Winter fruit"); // item_quality
-        Assertions.assertThat(farmero.getId()).isEqualTo(1000);
+        Assertions.assertThat(farmero.toString()).containsIgnoringCase("Farmer Rick");
+        Assertions.assertThat(farmero.toString()).contains("Sa Pobla");
+        Assertions.assertThat(farmero.getId()).isEqualTo(1000L);
     }
 /* 
     @Test
